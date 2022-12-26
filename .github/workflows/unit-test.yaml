@@ -1,0 +1,24 @@
+name: Unit-test
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+
+  golang-test:
+    name: Golang-unit-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v3
+        with:
+          go-version: ^1.19
+        id: go
+
+      - name: Test
+        run: GO111MODULE=auto go test -cover ./...
