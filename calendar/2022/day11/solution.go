@@ -18,11 +18,11 @@ type monkey struct {
 }
 
 func parseItems(line string) []int {
-	var items []int
-	tmp := strings.Split(line, ":")[1]
-	for _, item := range strings.Split(tmp, ",") {
-		elem, _ := strconv.Atoi(strings.Trim(item, " "))
-		items = append(items, elem)
+	itemsStr := strings.Split(line, ":")[1]
+	items := make([]int, 0, len(itemsStr))
+	for _, itemStr := range strings.Split(itemsStr, ",") {
+		item, _ := strconv.Atoi(strings.TrimSpace(itemStr))
+		items = append(items, item)
 	}
 	return items
 }
